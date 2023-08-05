@@ -11,9 +11,11 @@ public class Arena {
 
     public void vykresli() {
         System.out.println("__________ Arena __________ \n");
-        System.out.print("Zdravie bojovnikov: \n");
-        System.out.printf("%s %s%n", bojovnikA, bojovnikA.grafickyZivot());
-        System.out.printf("%s %s%n", bojovnikB, bojovnikB.grafickyZivot());
+        System.out.print("Bojovnici: \n");
+        vypisBojovnika(bojovnikA);
+        System.out.println();
+        vypisBojovnika(bojovnikB);
+        System.out.println();
     }
 
     private void vypisSpravu(String sprava) {
@@ -49,6 +51,16 @@ public class Arena {
                 vypisSpravu(bojovnikA.vratPoslednuSpravu());
             }
             System.out.println();
+        }
+    }
+
+    private void vypisBojovnika(Bojovnik bojovnik) {
+        System.out.println(bojovnik);
+        System.out.print("Zivot: ");
+        System.out.println(bojovnik.grafickyZivot());
+        if (bojovnik instanceof Mag) {
+            System.out.print("Mana: ");
+            System.out.println(((Mag) bojovnik).grafickaMana());
         }
     }
 }

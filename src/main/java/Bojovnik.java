@@ -1,10 +1,10 @@
 public class Bojovnik {
-    private String meno;
-    private int zivot;
-    private int maximalnyZivot;
-    private int utok;
-    private int obrana;
-    private Kocka kocka;
+    protected String meno;
+    protected int zivot;
+    protected int maximalnyZivot;
+    protected int utok;
+    protected int obrana;
+    protected Kocka kocka;
     private String sprava;
 
     public Bojovnik(String meno, int zivot, int utok, int obrana, Kocka kocka) {
@@ -25,21 +25,25 @@ public class Bojovnik {
         return zivot > 0;
     }
 
-    public String grafickyZivot() {
+    protected String grafickyUkazovatel(int aktualny, int maximalny) {
         String grafickyZivot = "[";
         int celkom = 20;
-        double pocetDielikov = Math.round(((double) zivot / maximalnyZivot) * celkom);
+        double pocetDielikov = Math.round(((double) aktualny / maximalny) * celkom);
         if ((pocetDielikov == 0) && (jeZivy())) {
             pocetDielikov = 1;
         }
         for (int i = 0; i < pocetDielikov; i++) {
-            grafickyZivot += "#";
+            grafickyZivot += "█";
         }
         for (int i = 0; i < celkom - pocetDielikov; i++) {
             grafickyZivot += " ";
         }
         grafickyZivot += "]";
         return grafickyZivot;
+    }
+
+    public String grafickyZivot() {
+        return grafickyUkazovatel(zivot, maximalnyZivot);
     }
 
     public void branSa(int uder) {
@@ -63,7 +67,7 @@ public class Bojovnik {
         nepriatel.branSa(uder);
     }
 
-    private void nastavSpravu(String sprava) {
+    protected void nastavSpravu(String sprava) {
         this.sprava = sprava;
     }
 
